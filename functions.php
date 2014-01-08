@@ -120,6 +120,7 @@ function parse_vevent( $vevent, $dateFormat="%Y-%m-%d", $timeFormat="%H:%M" ) {
 		$entry['description'] = $description[1];
         $entry['description'] = preg_replace("/[\r\n] ?/", "", $entry['description']);       
         $entry['description'] = str_replace('\,', ',', $entry['description']);        
+		$entry['description'] = str_replace('\\n', "\n", $entry['description']); // added!  Replace newlines in description with actual linebreaks [Rik, 2014-01-08]
 	}
 	if (preg_match($regex_location, $vevent, $location)) {
 		$entry['location'] = str_replace('\,', ',', $location[1]);
